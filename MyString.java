@@ -25,7 +25,7 @@ public class MyString implements CharSequence, Comparable<CharSequence>{
 
   // implements subSequence
   public CharSequence subSequence(int start, int end){
-    if (start < 0 || end < 0 || end > data.length - 1 || start > data.length - 1 || end < start){
+    if (start < 0 || end < 0 || end > data.length || start > data.length || end < start){
       throw new IndexOutOfBoundsException();
     }
     String whatWeWant = "";
