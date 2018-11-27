@@ -1,4 +1,4 @@
-public class MyString implements CharSequence/*, Comparable<CharSequence>*/{
+public class MyString implements CharSequence, Comparable<CharSequence>{
   //store data in an array of chars
   private char[] data;
 
@@ -44,5 +44,28 @@ public class MyString implements CharSequence/*, Comparable<CharSequence>*/{
     return whatWeWant;
   }
 
+  // implements compareTo for Comparable<CharSequence>
+  public int compareTo(CharSequence c){
+    if (c == null){
+      throw new NullPointerException();
+    }
+    // if they're the same, we just make it zero
+    // this should cover empty strings too???
+    if (c.equals(this)){
+      return 0;
+    }
+    // if this is empty, but the given isn't empty, then this is less than given thus negative 1
+    if (this.toString() == ""){
+      if (c.toString() != ""){
+        return -1;
+      }
+    }
+    // if the given is empty, but this is not empty, then this is more than given thus positive 1
+    if (c.toString() == ""){
+      if (this.toString != ""){
+        return 1;
+      }
+    }
+  }
 
 }
