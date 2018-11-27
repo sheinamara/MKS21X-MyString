@@ -1,8 +1,8 @@
 public class MyString implements CharSequence, Comparable<CharSequence>{
-  //store data in an array of chars
+  // stores data in an array of chars
   private char[] data;
 
-  //constructor
+  // constructor
   public MyString(CharSequence s){
     data = new char[s.length()];
     for (int i = 0; i < s.length(); i++){
@@ -62,10 +62,37 @@ public class MyString implements CharSequence, Comparable<CharSequence>{
     }
     // if the given is empty, but this is not empty, then this is more than given thus positive 1
     if (c.toString() == ""){
-      if (this.toString != ""){
+      if (this.toString() != ""){
         return 1;
       }
     }
+    // loop through to check for when stuff differs to compare
+    for (int i = 0; i < this.length() && i < c.length(); i++){
+      // if the current index's char is greater in this, then return 1 immediately
+      if (this.charAt(i) > c.charAt(i)){
+        return 1;
+      }
+      // the opposite
+      if (c.charAt(i) > this.charAt(i)){
+        return -1;
+      }
+      // the same characters
+      if (c.charAt(i) == this.charAt(i)){
+        // if the current interval is equal to the length of this but then the given is larger, return -1
+        if (i == this.length() - 1 && i < c.length() - 1){
+          return -1;
+        }
+        // if the current interval is less than the length of this while given is equal, this is larger, return 1
+        if (i < this.length() - 1 && i == c.length() - 1){
+          return 1;
+        }
+        // the current interval is equal to length
+        if (i == this.length() - 1 && i == c.length() -1){
+          return 0;
+        }
+      }
+    }
+    return 0;
   }
 
 }
